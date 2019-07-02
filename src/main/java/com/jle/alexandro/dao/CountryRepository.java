@@ -9,8 +9,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import java.util.List;
-
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RepositoryRestResource(collectionResourceRel = "results", path = "countries")
 public interface CountryRepository extends JpaRepository<CountryEntity, Integer> {
