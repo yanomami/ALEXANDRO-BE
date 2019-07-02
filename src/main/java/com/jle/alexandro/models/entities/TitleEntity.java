@@ -1,4 +1,4 @@
-package com.jle.alexandro.model.entities;
+package com.jle.alexandro.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 

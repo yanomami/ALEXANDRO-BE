@@ -1,22 +1,22 @@
-package com.jle.alexandro.model.entities;
+package com.jle.alexandro.models.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class OrderLineEntityPK implements Serializable {
-    private Integer orderHeaderId;
+public class ProductCategoryEntityPK implements Serializable {
+    private Integer categoryId;
     private Integer productId;
 
-    @Column(name = "order_header_id", nullable = false)
+    @Column(name = "category_id", nullable = false)
     @Id
-    public Integer getOrderHeaderId() {
-        return orderHeaderId;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setOrderHeaderId(Integer orderHeaderId) {
-        this.orderHeaderId = orderHeaderId;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     @Column(name = "product_id", nullable = false)
@@ -33,13 +33,13 @@ public class OrderLineEntityPK implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrderLineEntityPK that = (OrderLineEntityPK) o;
-        return Objects.equals(orderHeaderId, that.orderHeaderId) &&
+        ProductCategoryEntityPK that = (ProductCategoryEntityPK) o;
+        return Objects.equals(categoryId, that.categoryId) &&
                 Objects.equals(productId, that.productId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderHeaderId, productId);
+        return Objects.hash(categoryId, productId);
     }
 }

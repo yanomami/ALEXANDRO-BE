@@ -1,4 +1,4 @@
-package com.jle.alexandro.model.entities;
+package com.jle.alexandro.models.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Id;

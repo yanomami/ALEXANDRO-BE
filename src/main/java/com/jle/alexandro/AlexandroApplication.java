@@ -1,7 +1,7 @@
 package com.jle.alexandro;
 
-import com.jle.alexandro.model.entities.ClientEntity;
-import com.jle.alexandro.model.entities.CountryEntity;
+import com.jle.alexandro.models.entities.ClientEntity;
+import com.jle.alexandro.models.entities.CountryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
