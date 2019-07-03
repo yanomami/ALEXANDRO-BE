@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// example of a @RestController (if business process needed via service) Versus @RepositoryRestResource (which use hateoas)
+// example of a @RestController (if business process needed via service) Versus @RepositoryRestResource (which use hateoas & pageable)
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
