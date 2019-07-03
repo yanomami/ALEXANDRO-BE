@@ -20,7 +20,9 @@ public class AlexandroApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        repositoryRestConfiguration.exposeIdsFor(CountryEntity.class);
-        repositoryRestConfiguration.exposeIdsFor(ClientEntity.class);
+        //In case you need to expose the identifiers for all entities (as they are not expose with sprint data rest @RepositoryRestResource):
+        //repositoryRestConfiguration.exposeIdsFor(CountryEntity.class);
+        //repositoryRestConfiguration.exposeIdsFor(ClientEntity.class);
+        //-> Cf. file RestConfiguration
     }
 }
