@@ -4,6 +4,8 @@ import com.jle.alexandro.dao.CountryRepository;
 import com.jle.alexandro.models.entities.CountryEntity;
 import com.jle.alexandro.services.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +19,11 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public List<CountryEntity> findAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public Page<CountryEntity> findAllPageable(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override
