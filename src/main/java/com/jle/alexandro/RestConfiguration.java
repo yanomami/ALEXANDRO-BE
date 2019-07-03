@@ -1,6 +1,8 @@
 package com.jle.alexandro;
 
-//In case you need to expose the identifiers for all entities (as they are not expose with sprint data rest @RepositoryRestResource):
+//In case you need to expose the identifiers for all entities (as they are not expose with sprint data rest @RepositoryRestResource).
+//The best solution would be not to using the IDs of your entities, and use the link references the hypermedia provides.
+//You just need to parse your JSON accordingly to the HAL specification used by Spring Data Rest.
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
