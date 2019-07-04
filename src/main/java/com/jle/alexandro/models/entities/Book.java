@@ -73,7 +73,7 @@ public class Book {
         return Objects.hash(id, isbn, title, nbPages);
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     public Product getProductByProductId() {
         return productByProductId;

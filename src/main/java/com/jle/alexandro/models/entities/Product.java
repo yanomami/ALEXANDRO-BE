@@ -13,7 +13,7 @@ public class Product {
     private Integer stock;
     private BigDecimal priceExVat;
     private byte[] picture;
-    private Set<Book> booksById;
+    private Book bookById;
     private Set<OrderLine> orderLinesById;
     private Set<ProductCategory> productCategoriesById;
 
@@ -87,13 +87,13 @@ public class Product {
         return result;
     }
 
-    @OneToMany(mappedBy = "productByProductId")
-    public Set<Book> getBooksById() {
-        return booksById;
+    @OneToOne(mappedBy = "productByProductId")
+    public Book getBookById() {
+        return bookById;
     }
 
-    public void setBooksById(Set<Book> booksById) {
-        this.booksById = booksById;
+    public void setBookById(Book bookById) {
+        this.bookById = bookById;
     }
 
     @OneToMany(mappedBy = "productByProductId")
