@@ -6,6 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RepositoryRestResource(collectionResourceRel = "results", path = "shippingMethods")
+@RepositoryRestResource(collectionResourceRel = "results")
 public interface ShippingMethodRepository extends JpaRepository<ShippingMethod, Integer> {
 }
