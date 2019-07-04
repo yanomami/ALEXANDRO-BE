@@ -1,4 +1,4 @@
-package com.jle.alexandro;
+package com.jle.alexandro.config;
 
 //In case you need to expose the identifiers for all entities (as they are not expose with sprint data rest @RepositoryRestResource).
 //The best solution would be not to using the IDs of your entities, and use the link references the hypermedia provides.

@@ -1,4 +1,4 @@
-package com.jle.alexandro;
+package com.jle.alexandro.config;
 
 import org.hibernate.type.StandardBasicTypes;
 
