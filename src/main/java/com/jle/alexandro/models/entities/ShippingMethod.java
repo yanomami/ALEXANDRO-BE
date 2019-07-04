@@ -35,7 +35,7 @@ public class ShippingMethod {
     }
 
     @Basic
-    @Column(name = "charges", nullable = false, precision = 4)
+    @Column(name = "charges", nullable = false, columnDefinition="decimal", precision=19, scale=4)
     public BigDecimal getCharges() {
         return charges;
     }

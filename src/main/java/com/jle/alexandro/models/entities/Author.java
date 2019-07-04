@@ -43,8 +43,8 @@ public class Author {
         this.lastName = lastName;
     }
 
-    @Basic
-    @Column(name = "bio", nullable = true, length = -1)
+    @Lob
+    @Column(name = "bio", nullable = true, length = -1, columnDefinition = "TEXT")
     public String getBio() {
         return bio;
     }

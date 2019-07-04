@@ -49,7 +49,7 @@ public class Product {
     }
 
     @Basic
-    @Column(name = "price_ex_vat", nullable = false, precision = 4)
+    @Column(name = "price_ex_vat", nullable = false, columnDefinition="decimal", precision=19, scale=4)
     public BigDecimal getPriceExVat() {
         return priceExVat;
     }
