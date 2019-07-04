@@ -6,26 +6,26 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "order_header", schema = "dbo", catalog = "DB_ALEXANDRIA")
-public class OrderHeaderEntity {
-    private Integer idOrderHeader;
+@Table(name = "order_header", schema = "dbo", catalog = "DB_ALEXANDRO")
+public class OrderHeader {
+    private Integer id;
     private Date datePlaced;
     private Date dateShipped;
     private Date dateDelivered;
     private String comment;
-    private ClientEntity clientByClientId;
-    private ShippingMethodEntity shippingMethodByShippingMethodId;
-    private Set<OrderLineEntity> orderLinesByIdOrderHeader;
+    private Client clientByClientId;
+    private ShippingMethod shippingMethodByShippingMethodId;
+    private Set<OrderLine> orderLinesById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_order_header", nullable = false)
-    public Integer getIdOrderHeader() {
-        return idOrderHeader;
+    @Column(name = "id", nullable = false)
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdOrderHeader(Integer idOrderHeader) {
-        this.idOrderHeader = idOrderHeader;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Basic
@@ -72,8 +72,8 @@ public class OrderHeaderEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrderHeaderEntity that = (OrderHeaderEntity) o;
-        return Objects.equals(idOrderHeader, that.idOrderHeader) &&
+        OrderHeader that = (OrderHeader) o;
+        return Objects.equals(id, that.id) &&
                 Objects.equals(datePlaced, that.datePlaced) &&
                 Objects.equals(dateShipped, that.dateShipped) &&
                 Objects.equals(dateDelivered, that.dateDelivered) &&
@@ -82,35 +82,35 @@ public class OrderHeaderEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(idOrderHeader, datePlaced, dateShipped, dateDelivered, comment);
+        return Objects.hash(id, datePlaced, dateShipped, dateDelivered, comment);
     }
 
     @ManyToOne
-    @JoinColumn(name = "client_id", referencedColumnName = "id_client", nullable = false)
-    public ClientEntity getClientByClientId() {
+    @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
+    public Client getClientByClientId() {
         return clientByClientId;
     }
 
-    public void setClientByClientId(ClientEntity clientByClientId) {
+    public void setClientByClientId(Client clientByClientId) {
         this.clientByClientId = clientByClientId;
     }
 
     @ManyToOne
-    @JoinColumn(name = "shipping_method_id", referencedColumnName = "id_shipping_method", nullable = false)
-    public ShippingMethodEntity getShippingMethodByShippingMethodId() {
+    @JoinColumn(name = "shipping_method_id", referencedColumnName = "id", nullable = false)
+    public ShippingMethod getShippingMethodByShippingMethodId() {
         return shippingMethodByShippingMethodId;
     }
 
-    public void setShippingMethodByShippingMethodId(ShippingMethodEntity shippingMethodByShippingMethodId) {
+    public void setShippingMethodByShippingMethodId(ShippingMethod shippingMethodByShippingMethodId) {
         this.shippingMethodByShippingMethodId = shippingMethodByShippingMethodId;
     }
 
     @OneToMany(mappedBy = "orderHeaderByOrderHeaderId")
-    public Set<OrderLineEntity> getOrderLinesByIdOrderHeader() {
-        return orderLinesByIdOrderHeader;
+    public Set<OrderLine> getOrderLinesById() {
+        return orderLinesById;
     }
 
-    public void setOrderLinesByIdOrderHeader(Set<OrderLineEntity> orderLinesByIdOrderHeader) {
-        this.orderLinesByIdOrderHeader = orderLinesByIdOrderHeader;
+    public void setOrderLinesById(Set<OrderLine> orderLinesById) {
+        this.orderLinesById = orderLinesById;
     }
 }

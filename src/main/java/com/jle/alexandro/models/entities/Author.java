@@ -5,23 +5,22 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "author", schema = "dbo", catalog = "DB_ALEXANDRIA")
-public class AuthorEntity {
-    private Integer idAuthor;
+public class Author {
+    private Integer id;
     private String firstName;
     private String lastName;
     private String bio;
-    private Set<BookEntity> booksByIdAuthor;
+    private Set<Book> booksById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_author", nullable = false)
-    public Integer getIdAuthor() {
-        return idAuthor;
+    @Column(name = "id", nullable = false)
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdAuthor(Integer idAuthor) {
-        this.idAuthor = idAuthor;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Basic
@@ -58,24 +57,24 @@ public class AuthorEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AuthorEntity that = (AuthorEntity) o;
-        return Objects.equals(idAuthor, that.idAuthor) &&
-                Objects.equals(firstName, that.firstName) &&
-                Objects.equals(lastName, that.lastName) &&
-                Objects.equals(bio, that.bio);
+        Author author = (Author) o;
+        return Objects.equals(id, author.id) &&
+                Objects.equals(firstName, author.firstName) &&
+                Objects.equals(lastName, author.lastName) &&
+                Objects.equals(bio, author.bio);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAuthor, firstName, lastName, bio);
+        return Objects.hash(id, firstName, lastName, bio);
     }
 
     @OneToMany(mappedBy = "authorByAuthorId")
-    public Set<BookEntity> getBooksByIdAuthor() {
-        return booksByIdAuthor;
+    public Set<Book> getBooksById() {
+        return booksById;
     }
 
-    public void setBooksByIdAuthor(Set<BookEntity> booksByIdAuthor) {
-        this.booksByIdAuthor = booksByIdAuthor;
+    public void setBooksById(Set<Book> booksById) {
+        this.booksById = booksById;
     }
 }

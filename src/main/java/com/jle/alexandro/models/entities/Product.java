@@ -7,26 +7,25 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "product", schema = "dbo", catalog = "DB_ALEXANDRIA")
-public class ProductEntity {
-    private Integer idProduct;
+public class Product {
+    private Integer id;
     private String name;
     private Integer stock;
     private BigDecimal priceExVat;
     private byte[] picture;
-    private Set<BookEntity> booksByIdProduct;
-    private Set<OrderLineEntity> orderLinesByIdProduct;
-    private Set<ProductCategoryEntity> productCategoriesByIdProduct;
+    private Set<Book> booksById;
+    private Set<OrderLine> orderLinesById;
+    private Set<ProductCategory> productCategoriesById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_product", nullable = false)
-    public Integer getIdProduct() {
-        return idProduct;
+    @Column(name = "id", nullable = false)
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdProduct(Integer idProduct) {
-        this.idProduct = idProduct;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Basic
@@ -73,45 +72,45 @@ public class ProductEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProductEntity that = (ProductEntity) o;
-        return Objects.equals(idProduct, that.idProduct) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(stock, that.stock) &&
-                Objects.equals(priceExVat, that.priceExVat) &&
-                Arrays.equals(picture, that.picture);
+        Product product = (Product) o;
+        return Objects.equals(id, product.id) &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(stock, product.stock) &&
+                Objects.equals(priceExVat, product.priceExVat) &&
+                Arrays.equals(picture, product.picture);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(idProduct, name, stock, priceExVat);
+        int result = Objects.hash(id, name, stock, priceExVat);
         result = 31 * result + Arrays.hashCode(picture);
         return result;
     }
 
     @OneToMany(mappedBy = "productByProductId")
-    public Set<BookEntity> getBooksByIdProduct() {
-        return booksByIdProduct;
+    public Set<Book> getBooksById() {
+        return booksById;
     }
 
-    public void setBooksByIdProduct(Set<BookEntity> booksByIdProduct) {
-        this.booksByIdProduct = booksByIdProduct;
-    }
-
-    @OneToMany(mappedBy = "productByProductId")
-    public Set<OrderLineEntity> getOrderLinesByIdProduct() {
-        return orderLinesByIdProduct;
-    }
-
-    public void setOrderLinesByIdProduct(Set<OrderLineEntity> orderLinesByIdProduct) {
-        this.orderLinesByIdProduct = orderLinesByIdProduct;
+    public void setBooksById(Set<Book> booksById) {
+        this.booksById = booksById;
     }
 
     @OneToMany(mappedBy = "productByProductId")
-    public Set<ProductCategoryEntity> getProductCategoriesByIdProduct() {
-        return productCategoriesByIdProduct;
+    public Set<OrderLine> getOrderLinesById() {
+        return orderLinesById;
     }
 
-    public void setProductCategoriesByIdProduct(Set<ProductCategoryEntity> productCategoriesByIdProduct) {
-        this.productCategoriesByIdProduct = productCategoriesByIdProduct;
+    public void setOrderLinesById(Set<OrderLine> orderLinesById) {
+        this.orderLinesById = orderLinesById;
+    }
+
+    @OneToMany(mappedBy = "productByProductId")
+    public Set<ProductCategory> getProductCategoriesById() {
+        return productCategoriesById;
+    }
+
+    public void setProductCategoriesById(Set<ProductCategory> productCategoriesById) {
+        this.productCategoriesById = productCategoriesById;
     }
 }

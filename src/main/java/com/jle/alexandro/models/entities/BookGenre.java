@@ -4,15 +4,16 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "book_genre", schema = "dbo", catalog = "DB_ALEXANDRIA")
-@IdClass(BookGenreEntityPK.class)
-public class BookGenreEntity {
+@Table(name = "book_genre", schema = "dbo", catalog = "DB_ALEXANDRO")
+@IdClass(BookGenrePK.class)
+public class BookGenre {
     private Integer bookId;
     private Integer genreId;
-    private BookEntity bookByBookId;
-    private GenreEntity genreByGenreId;
+    private Book bookByBookId;
+    private Genre genreByGenreId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id", nullable = false)
     public Integer getBookId() {
         return bookId;
@@ -36,9 +37,9 @@ public class BookGenreEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BookGenreEntity that = (BookGenreEntity) o;
-        return Objects.equals(bookId, that.bookId) &&
-                Objects.equals(genreId, that.genreId);
+        BookGenre bookGenre = (BookGenre) o;
+        return Objects.equals(bookId, bookGenre.bookId) &&
+                Objects.equals(genreId, bookGenre.genreId);
     }
 
     @Override
@@ -47,22 +48,22 @@ public class BookGenreEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "book_id", referencedColumnName = "id_book", nullable = false, insertable = false, updatable = false)
-    public BookEntity getBookByBookId() {
+    @JoinColumn(name = "book_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Book getBookByBookId() {
         return bookByBookId;
     }
 
-    public void setBookByBookId(BookEntity bookByBookId) {
+    public void setBookByBookId(Book bookByBookId) {
         this.bookByBookId = bookByBookId;
     }
 
     @ManyToOne
-    @JoinColumn(name = "genre_id", referencedColumnName = "id_genre", nullable = false, insertable = false, updatable = false)
-    public GenreEntity getGenreByGenreId() {
+    @JoinColumn(name = "genre_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Genre getGenreByGenreId() {
         return genreByGenreId;
     }
 
-    public void setGenreByGenreId(GenreEntity genreByGenreId) {
+    public void setGenreByGenreId(Genre genreByGenreId) {
         this.genreByGenreId = genreByGenreId;
     }
 }

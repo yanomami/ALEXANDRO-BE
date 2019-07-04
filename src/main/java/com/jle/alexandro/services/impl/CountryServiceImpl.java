@@ -1,7 +1,7 @@
 package com.jle.alexandro.services.impl;
 
 import com.jle.alexandro.dao.CountryRepository;
-import com.jle.alexandro.models.entities.CountryEntity;
+import com.jle.alexandro.models.entities.Country;
 import com.jle.alexandro.services.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,27 +17,27 @@ public class CountryServiceImpl implements CountryService {
     private CountryRepository repository;
 
     @Override
-    public List<CountryEntity> findAll() {
+    public List<Country> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public Page<CountryEntity> findAllPageable(Pageable pageable) {
+    public Page<Country> findAllPageable(Pageable pageable) {
         return repository.findAll(pageable);
     }
 
     @Override
-    public CountryEntity findById(Integer id) {
+    public Country findById(Integer id) {
         return repository.findById(id).get();
     }
 
     @Override
-    public CountryEntity update(CountryEntity country) {
+    public Country update(Country country) {
         return repository.save(country);
     }
 
     @Override
-    public CountryEntity create(CountryEntity country) {
+    public Country create(Country country) {
         return repository.save(country);
     }
 

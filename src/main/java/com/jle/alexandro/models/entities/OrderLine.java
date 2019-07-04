@@ -4,16 +4,17 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "order_line", schema = "dbo", catalog = "DB_ALEXANDRIA")
-@IdClass(OrderLineEntityPK.class)
-public class OrderLineEntity {
+@Table(name = "order_line", schema = "dbo", catalog = "DB_ALEXANDRO")
+@IdClass(OrderLinePK.class)
+public class OrderLine {
     private Integer orderHeaderId;
     private Integer productId;
     private Integer quantity;
-    private OrderHeaderEntity orderHeaderByOrderHeaderId;
-    private ProductEntity productByProductId;
+    private OrderHeader orderHeaderByOrderHeaderId;
+    private Product productByProductId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_header_id", nullable = false)
     public Integer getOrderHeaderId() {
         return orderHeaderId;
@@ -47,10 +48,10 @@ public class OrderLineEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrderLineEntity that = (OrderLineEntity) o;
-        return Objects.equals(orderHeaderId, that.orderHeaderId) &&
-                Objects.equals(productId, that.productId) &&
-                Objects.equals(quantity, that.quantity);
+        OrderLine orderLine = (OrderLine) o;
+        return Objects.equals(orderHeaderId, orderLine.orderHeaderId) &&
+                Objects.equals(productId, orderLine.productId) &&
+                Objects.equals(quantity, orderLine.quantity);
     }
 
     @Override
@@ -59,22 +60,22 @@ public class OrderLineEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "order_header_id", referencedColumnName = "id_order_header", nullable = false, insertable = false, updatable = false)
-    public OrderHeaderEntity getOrderHeaderByOrderHeaderId() {
+    @JoinColumn(name = "order_header_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public OrderHeader getOrderHeaderByOrderHeaderId() {
         return orderHeaderByOrderHeaderId;
     }
 
-    public void setOrderHeaderByOrderHeaderId(OrderHeaderEntity orderHeaderByOrderHeaderId) {
+    public void setOrderHeaderByOrderHeaderId(OrderHeader orderHeaderByOrderHeaderId) {
         this.orderHeaderByOrderHeaderId = orderHeaderByOrderHeaderId;
     }
 
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id_product", nullable = false, insertable = false, updatable = false)
-    public ProductEntity getProductByProductId() {
+    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Product getProductByProductId() {
         return productByProductId;
     }
 
-    public void setProductByProductId(ProductEntity productByProductId) {
+    public void setProductByProductId(Product productByProductId) {
         this.productByProductId = productByProductId;
     }
 }

@@ -1,6 +1,6 @@
 package com.jle.alexandro.controllers;
 
-import com.jle.alexandro.models.entities.ClientEntity;
+import com.jle.alexandro.models.entities.Client;
 import com.jle.alexandro.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,28 +21,28 @@ public class ClientsController {
     private ClientService service;
 
     @GetMapping
-    public List<ClientEntity> findAll() {
+    public List<Client> findAll() {
         return service.findAll();
     }
 
     @GetMapping(path = {"/pageable"})
-    public Page<ClientEntity> findAll(Pageable pageable) {
+    public Page<Client> findAll(Pageable pageable) {
         return service.findAllPageable(pageable);
     }
 
     @GetMapping(path = {"/{id}"})
-    public ClientEntity findById(@PathVariable("id") Integer id){
+    public Client findById(@PathVariable("id") Integer id){
         return service.findById(id);
     }
 
     @PostMapping
-    public ClientEntity create(@RequestBody ClientEntity country) {
+    public Client create(@RequestBody Client country) {
         return service.create(country);
     }
 
     @PutMapping(path = {"/{id}"})
-    public ClientEntity update(@PathVariable("id") Integer id, @RequestBody ClientEntity country) {
-        country.setIdClient(id);
+    public Client update(@PathVariable("id") Integer id, @RequestBody Client country) {
+        country.setId(id);
         return service.update(country);
     }
 

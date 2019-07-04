@@ -6,22 +6,22 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "shipping_method", schema = "dbo", catalog = "DB_ALEXANDRIA")
-public class ShippingMethodEntity {
-    private Integer idShippingMethod;
+@Table(name = "shipping_method", schema = "dbo", catalog = "DB_ALEXANDRO")
+public class ShippingMethod {
+    private Integer id;
     private String description;
     private BigDecimal charges;
-    private Set<OrderHeaderEntity> orderHeadersByIdShippingMethod;
+    private Set<OrderHeader> orderHeadersById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_shipping_method", nullable = false)
-    public Integer getIdShippingMethod() {
-        return idShippingMethod;
+    @Column(name = "id", nullable = false)
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdShippingMethod(Integer idShippingMethod) {
-        this.idShippingMethod = idShippingMethod;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Basic
@@ -48,23 +48,23 @@ public class ShippingMethodEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ShippingMethodEntity that = (ShippingMethodEntity) o;
-        return Objects.equals(idShippingMethod, that.idShippingMethod) &&
+        ShippingMethod that = (ShippingMethod) o;
+        return Objects.equals(id, that.id) &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(charges, that.charges);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idShippingMethod, description, charges);
+        return Objects.hash(id, description, charges);
     }
 
     @OneToMany(mappedBy = "shippingMethodByShippingMethodId")
-    public Set<OrderHeaderEntity> getOrderHeadersByIdShippingMethod() {
-        return orderHeadersByIdShippingMethod;
+    public Set<OrderHeader> getOrderHeadersById() {
+        return orderHeadersById;
     }
 
-    public void setOrderHeadersByIdShippingMethod(Set<OrderHeaderEntity> orderHeadersByIdShippingMethod) {
-        this.orderHeadersByIdShippingMethod = orderHeadersByIdShippingMethod;
+    public void setOrderHeadersById(Set<OrderHeader> orderHeadersById) {
+        this.orderHeadersById = orderHeadersById;
     }
 }

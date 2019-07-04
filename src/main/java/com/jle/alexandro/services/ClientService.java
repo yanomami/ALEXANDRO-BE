@@ -1,16 +1,16 @@
 package com.jle.alexandro.services;
 
-import com.jle.alexandro.models.entities.ClientEntity;
+import com.jle.alexandro.models.entities.Client;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface ClientService {
-    List<ClientEntity> findAll();
-    Page<ClientEntity> findAllPageable(Pageable pageable);
-    ClientEntity findById(Integer id);
-    ClientEntity create(ClientEntity country);
-    ClientEntity update(ClientEntity country);
+    List<Client> findAll();
+    Page<Client> findAllPageable(Pageable pageable);
+    Client findById(Integer id);
+    Client create(Client country);
+    Client update(Client country);
     void delete(Integer id);
 }

@@ -4,15 +4,16 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "product_category", schema = "dbo", catalog = "DB_ALEXANDRIA")
-@IdClass(ProductCategoryEntityPK.class)
-public class ProductCategoryEntity {
+@Table(name = "product_category", schema = "dbo", catalog = "DB_ALEXANDRO")
+@IdClass(ProductCategoryPK.class)
+public class ProductCategory {
     private Integer categoryId;
     private Integer productId;
-    private CategoryEntity categoryByCategoryId;
-    private ProductEntity productByProductId;
+    private Category categoryByCategoryId;
+    private Product productByProductId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id", nullable = false)
     public Integer getCategoryId() {
         return categoryId;
@@ -36,7 +37,7 @@ public class ProductCategoryEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProductCategoryEntity that = (ProductCategoryEntity) o;
+        ProductCategory that = (ProductCategory) o;
         return Objects.equals(categoryId, that.categoryId) &&
                 Objects.equals(productId, that.productId);
     }
@@ -47,22 +48,22 @@ public class ProductCategoryEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id_category", nullable = false, insertable = false, updatable = false)
-    public CategoryEntity getCategoryByCategoryId() {
+    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Category getCategoryByCategoryId() {
         return categoryByCategoryId;
     }
 
-    public void setCategoryByCategoryId(CategoryEntity categoryByCategoryId) {
+    public void setCategoryByCategoryId(Category categoryByCategoryId) {
         this.categoryByCategoryId = categoryByCategoryId;
     }
 
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id_product", nullable = false, insertable = false, updatable = false)
-    public ProductEntity getProductByProductId() {
+    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Product getProductByProductId() {
         return productByProductId;
     }
 
-    public void setProductByProductId(ProductEntity productByProductId) {
+    public void setProductByProductId(Product productByProductId) {
         this.productByProductId = productByProductId;
     }
 }

@@ -1,7 +1,7 @@
 package com.jle.alexandro.services.impl;
 
 import com.jle.alexandro.dao.ClientRepository;
-import com.jle.alexandro.models.entities.ClientEntity;
+import com.jle.alexandro.models.entities.Client;
 import com.jle.alexandro.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,27 +17,27 @@ public class ClientServiceImpl implements ClientService {
     private ClientRepository repository;
 
     @Override
-    public List<ClientEntity> findAll() {
+    public List<Client> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public Page<ClientEntity> findAllPageable(Pageable pageable) {
+    public Page<Client> findAllPageable(Pageable pageable) {
         return repository.findAll(pageable);
     }
 
     @Override
-    public ClientEntity findById(Integer id) {
+    public Client findById(Integer id) {
         return repository.findById(id).get();
     }
 
     @Override
-    public ClientEntity update(ClientEntity country) {
+    public Client update(Client country) {
         return repository.save(country);
     }
 
     @Override
-    public ClientEntity create(ClientEntity country) {
+    public Client create(Client country) {
         return repository.save(country);
     }
 

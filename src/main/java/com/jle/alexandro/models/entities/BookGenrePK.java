@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class BookGenreEntityPK implements Serializable {
+public class BookGenrePK implements Serializable {
     private Integer bookId;
     private Integer genreId;
 
@@ -33,7 +33,7 @@ public class BookGenreEntityPK implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BookGenreEntityPK that = (BookGenreEntityPK) o;
+        BookGenrePK that = (BookGenrePK) o;
         return Objects.equals(bookId, that.bookId) &&
                 Objects.equals(genreId, that.genreId);
     }

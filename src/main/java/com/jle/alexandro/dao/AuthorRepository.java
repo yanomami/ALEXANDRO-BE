@@ -1,11 +1,11 @@
 package com.jle.alexandro.dao;
 
-import com.jle.alexandro.models.entities.AuthorEntity;
+import com.jle.alexandro.models.entities.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RepositoryRestResource(collectionResourceRel = "results", path = "authors")
-public interface AuthorRepository extends JpaRepository<AuthorEntity, Integer> {
+public interface AuthorRepository extends JpaRepository<Author, Integer> {
 }

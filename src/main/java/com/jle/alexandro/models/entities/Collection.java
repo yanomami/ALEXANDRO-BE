@@ -5,21 +5,20 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "collection", schema = "dbo", catalog = "DB_ALEXANDRIA")
-public class CollectionEntity {
-    private Integer idCollection;
+public class Collection {
+    private Integer id;
     private String description;
-    private Set<BookEntity> booksByIdCollection;
+    private Set<Book> booksById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_collection", nullable = false)
-    public Integer getIdCollection() {
-        return idCollection;
+    @Column(name = "id", nullable = false)
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdCollection(Integer idCollection) {
-        this.idCollection = idCollection;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Basic
@@ -36,22 +35,22 @@ public class CollectionEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CollectionEntity that = (CollectionEntity) o;
-        return Objects.equals(idCollection, that.idCollection) &&
+        Collection that = (Collection) o;
+        return Objects.equals(id, that.id) &&
                 Objects.equals(description, that.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idCollection, description);
+        return Objects.hash(id, description);
     }
 
     @OneToMany(mappedBy = "collectionByCollectionId")
-    public Set<BookEntity> getBooksByIdCollection() {
-        return booksByIdCollection;
+    public Set<Book> getBooksById() {
+        return booksById;
     }
 
-    public void setBooksByIdCollection(Set<BookEntity> booksByIdCollection) {
-        this.booksByIdCollection = booksByIdCollection;
+    public void setBooksById(Set<Book> booksById) {
+        this.booksById = booksById;
     }
 }
