@@ -12,8 +12,8 @@ public class Address {
     private String state;
     private String postalCode;
     private Country countryByCountryId;
-    private Client clientsByIdInvoice;
-    private Client clientsByIdDelivery;
+    private Client clientByIdInvoice;
+    private Client clientByIdDelivery;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -105,20 +105,20 @@ public class Address {
     }
 
     @OneToOne(mappedBy = "addressByInvoiceAddressId")
-    public Client getClientsByIdInvoice() {
-        return clientsByIdInvoice;
+    public Client getClientByIdInvoice() {
+        return clientByIdInvoice;
     }
 
-    public void setClientsByIdInvoice(Client clientsByIdInvoice) {
-        this.clientsByIdInvoice = clientsByIdInvoice;
+    public void setClientByIdInvoice(Client clientByIdInvoice) {
+        this.clientByIdInvoice = clientByIdInvoice;
     }
 
     @OneToOne(mappedBy = "addressByDeliveryAddressId")
-    public Client getClientsByIdDelivery() {
-        return clientsByIdDelivery;
+    public Client getClientByIdDelivery() {
+        return clientByIdDelivery;
     }
 
-    public void setClientsByIdDelivery(Client clientsByIdDelivery) {
-        this.clientsByIdDelivery = clientsByIdDelivery;
+    public void setClientByIdDelivery(Client clientByIdDelivery) {
+        this.clientByIdDelivery = clientByIdDelivery;
     }
 }
