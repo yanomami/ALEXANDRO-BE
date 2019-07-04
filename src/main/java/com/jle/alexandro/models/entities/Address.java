@@ -1,5 +1,7 @@
 package com.jle.alexandro.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -104,6 +106,7 @@ public class Address {
         this.countryByCountryId = countryByCountryId;
     }
 
+    @JsonBackReference // TBC
     @OneToOne(mappedBy = "addressByInvoiceAddressId")
     public Client getClientByIdInvoice() {
         return clientByIdInvoice;
@@ -113,6 +116,7 @@ public class Address {
         this.clientByIdInvoice = clientByIdInvoice;
     }
 
+    @JsonBackReference // TBC
     @OneToOne(mappedBy = "addressByDeliveryAddressId")
     public Client getClientByIdDelivery() {
         return clientByIdDelivery;

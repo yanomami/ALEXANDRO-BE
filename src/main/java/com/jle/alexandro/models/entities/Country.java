@@ -1,5 +1,7 @@
 package com.jle.alexandro.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -45,6 +47,7 @@ public class Country {
         return Objects.hash(id, description);
     }
 
+    @JsonIgnore // TBC
     @OneToMany(mappedBy = "countryByCountryId")
     public Set<Address> getAddressesById() {
         return addressesById;

@@ -1,5 +1,8 @@
 package com.jle.alexandro.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -97,6 +100,7 @@ public class Client {
         return Objects.hash(id, firstName, lastName, email, phone, password);
     }
 
+    @JsonManagedReference // TBC
     @ManyToOne
     @JoinColumn(name = "title_id", referencedColumnName = "id", nullable = false)
     public Title getTitleByTitleId() {
@@ -107,6 +111,7 @@ public class Client {
         this.titleByTitleId = titleByTitleId;
     }
 
+    @JsonManagedReference // TBC
     @OneToOne
     @JoinColumn(name = "invoice_address_id", referencedColumnName = "id", nullable = false)
     public Address getAddressByInvoiceAddressId() {
@@ -117,6 +122,7 @@ public class Client {
         this.addressByInvoiceAddressId = addressByInvoiceAddressId;
     }
 
+    @JsonManagedReference // TBC
     @OneToOne
     @JoinColumn(name = "delivery_address_id", referencedColumnName = "id", nullable = false)
     public Address getAddressByDeliveryAddressId() {
@@ -127,6 +133,7 @@ public class Client {
         this.addressByDeliveryAddressId = addressByDeliveryAddressId;
     }
 
+    @JsonManagedReference // TBC
     @ManyToOne
     @JoinColumn(name = "payment_method_id", referencedColumnName = "id", nullable = false)
     public PaymentMethod getPaymentMethodByPaymentMethodId() {
@@ -137,6 +144,7 @@ public class Client {
         this.paymentMethodByPaymentMethodId = paymentMethodByPaymentMethodId;
     }
 
+    @JsonIgnore // TBC
     @OneToMany(mappedBy = "clientByClientId")
     public Set<OrderHeader> getOrderHeadersById() {
         return orderHeadersById;

@@ -1,5 +1,7 @@
 package com.jle.alexandro.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -45,6 +47,7 @@ public class Title {
         return Objects.hash(id, description);
     }
 
+    @JsonBackReference // TBC
     @OneToMany(mappedBy = "titleByTitleId")
     public Set<Client> getClientsById() {
         return clientsById;
