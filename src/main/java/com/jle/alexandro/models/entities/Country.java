@@ -1,6 +1,6 @@
 package com.jle.alexandro.models.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -47,7 +47,7 @@ public class Country {
         return Objects.hash(id, description);
     }
 
-    @JsonIgnore // TBC
+    @JsonBackReference // TBC
     @OneToMany(mappedBy = "countryByCountryId")
     public Set<Address> getAddressesById() {
         return addressesById;
