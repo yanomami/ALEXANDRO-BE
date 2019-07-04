@@ -58,8 +58,8 @@ public class OrderHeader {
         this.dateDelivered = dateDelivered;
     }
 
-    @Basic
-    @Column(name = "comment", nullable = true, length = -1)
+    @Lob
+    @Column(name = "comment", nullable = true, length = -1, columnDefinition = "TEXT")
     public String getComment() {
         return comment;
     }
