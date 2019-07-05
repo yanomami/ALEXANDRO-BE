@@ -1,5 +1,6 @@
 package com.jle.alexandro.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -140,7 +141,7 @@ public class Client {
         this.paymentMethodByPaymentMethodId = paymentMethodByPaymentMethodId;
     }
 
-    @JsonIgnore // TBC
+    @JsonBackReference // TBC
     @OneToMany(mappedBy = "clientByClientId")
     public Set<OrderHeader> getOrderHeadersById() {
         return orderHeadersById;
