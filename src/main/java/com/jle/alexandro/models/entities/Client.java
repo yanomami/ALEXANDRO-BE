@@ -111,7 +111,6 @@ public class Client {
         this.titleByTitleId = titleByTitleId;
     }
 
-    @JsonManagedReference // TBC
     @OneToOne
     @JoinColumn(name = "invoice_address_id", referencedColumnName = "id", nullable = false)
     public Address getAddressByInvoiceAddressId() {
@@ -122,7 +121,6 @@ public class Client {
         this.addressByInvoiceAddressId = addressByInvoiceAddressId;
     }
 
-    @JsonManagedReference // TBC
     @OneToOne
     @JoinColumn(name = "delivery_address_id", referencedColumnName = "id", nullable = false)
     public Address getAddressByDeliveryAddressId() {
