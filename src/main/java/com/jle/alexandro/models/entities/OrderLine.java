@@ -14,7 +14,6 @@ public class OrderLine {
     private Product productByProductId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_header_id", nullable = false)
     public Integer getOrderHeaderId() {
         return orderHeaderId;

@@ -13,7 +13,6 @@ public class BookGenre {
     private Genre genreByGenreId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id", nullable = false)
     public Integer getBookId() {
         return bookId;
