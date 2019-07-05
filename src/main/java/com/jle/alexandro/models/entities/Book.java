@@ -1,5 +1,7 @@
 package com.jle.alexandro.models.entities;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -27,7 +29,7 @@ public class Book {
         this.id = id;
     }
 
-    @Basic
+    @NaturalId
     @Column(name = "isbn", nullable = false, length = 13)
     public String getIsbn() {
         return isbn;
