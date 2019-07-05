@@ -100,7 +100,6 @@ public class Client {
         return Objects.hash(id, firstName, lastName, email, phone, password);
     }
 
-    @JsonManagedReference // TBC
     @ManyToOne
     @JoinColumn(name = "title_id", referencedColumnName = "id", nullable = false)
     public Title getTitleByTitleId() {
@@ -131,7 +130,6 @@ public class Client {
         this.addressByDeliveryAddressId = addressByDeliveryAddressId;
     }
 
-    @JsonManagedReference // TBC
     @ManyToOne
     @JoinColumn(name = "payment_method_id", referencedColumnName = "id", nullable = false)
     public PaymentMethod getPaymentMethodByPaymentMethodId() {
