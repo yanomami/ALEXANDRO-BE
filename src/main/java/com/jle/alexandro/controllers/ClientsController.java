@@ -36,14 +36,14 @@ public class ClientsController {
     }
 
     @PostMapping
-    public Client create(@RequestBody Client country) {
-        return service.create(country);
+    public Client create(@RequestBody Client resource) {
+        return service.create(resource);
     }
 
     @PutMapping(path = {"/{id}"})
-    public Client update(@PathVariable("id") Integer id, @RequestBody Client country) {
-        country.setId(id);
-        return service.update(country);
+    public Client update(@PathVariable("id") Integer id, @RequestBody Client resource) {
+        resource.setId(id);
+        return service.update(resource);
     }
 
     @DeleteMapping(path ={"/{id}"})

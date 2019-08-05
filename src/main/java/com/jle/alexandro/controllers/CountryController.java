@@ -36,14 +36,14 @@ public class CountryController {
     }
 
     @PostMapping
-    public Country create(@RequestBody Country country) {
-        return service.create(country);
+    public Country create(@RequestBody Country resource) {
+        return service.create(resource);
     }
 
     @PutMapping(path = {"/{id}"})
-    public Country update(@PathVariable("id") Integer id, @RequestBody Country country) {
-        country.setId(id);
-        return service.update(country);
+    public Country update(@PathVariable("id") Integer id, @RequestBody Country resource) {
+        resource.setId(id);
+        return service.update(resource);
     }
 
     @DeleteMapping(path ={"/{id}"})
