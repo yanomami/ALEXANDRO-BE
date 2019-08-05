@@ -1,16 +1,26 @@
 package com.jle.alexandro;
 
+import com.jle.alexandro.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class AlexandroApplication implements CommandLineRunner {
 
+/*    @Autowired
+    private RepositoryRestConfiguration repositoryRestConfiguration;*/
+
+/*
     @Autowired
-    private RepositoryRestConfiguration repositoryRestConfiguration;
+    private ClientService service;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+*/
 
     public static void main(String[] args) {
         SpringApplication.run(AlexandroApplication.class, args);
@@ -22,5 +32,13 @@ public class AlexandroApplication implements CommandLineRunner {
         //repositoryRestConfiguration.exposeIdsFor(CountryEntity.class);
         //repositoryRestConfiguration.exposeIdsFor(ClientEntity.class);
         //-> Cf. file RestConfiguration
+
+        // Encode passwords if set before encryption (import data from sql)
+ /*
+        service.findAll().forEach(client -> {
+            client.setPassword(passwordEncoder.encode("Peenahe1"));
+            service.update(client);
+        }); }
+        */
     }
 }
