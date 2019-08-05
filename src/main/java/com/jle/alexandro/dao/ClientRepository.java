@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @RepositoryRestResource(collectionResourceRel = "results")
 public interface ClientRepository extends JpaRepository<Client, Integer> {
     @RestResource
-    Client findClientByEmailAndPassword(@Param("email") String email, @Param("password") String password);
+    Client findClientByEmail(@Param("email") String email);
 }
