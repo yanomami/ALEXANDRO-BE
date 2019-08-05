@@ -3,6 +3,7 @@ package com.jle.alexandro.models.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -53,7 +54,7 @@ public class Client {
         this.lastName = lastName;
     }
 
-    @Basic
+    @NaturalId
     @Column(name = "email", nullable = false, length = 255)
     public String getEmail() {
         return email;
