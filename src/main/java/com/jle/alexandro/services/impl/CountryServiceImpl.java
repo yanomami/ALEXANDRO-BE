@@ -34,13 +34,13 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public Country update(Country country) {
-        return repository.save(country);
+    public Country update(Country resource) {
+        return repository.save(resource);
     }
 
     @Override
-    public Country create(Country country) {
-        return repository.save(country);
+    public Country create(Country resource) {
+        return repository.save(resource);
     }
 
     @Override

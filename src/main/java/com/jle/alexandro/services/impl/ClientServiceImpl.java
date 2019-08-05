@@ -34,13 +34,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client update(Client country) {
-        return repository.save(country);
+    public Client update(Client resource) {
+        return repository.save(resource);
     }
 
     @Override
-    public Client create(Client country) {
-        return repository.save(country);
+    public Client create(Client resource) {
+        return repository.save(resource);
     }
 
     @Override
