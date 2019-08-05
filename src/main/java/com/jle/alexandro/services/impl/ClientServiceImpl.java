@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -28,7 +29,8 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client findById(Integer id) {
-        return repository.findById(id).get();
+        Optional<Client> optional = repository.findById(id);
+        return optional.orElse(null);
     }
 
     @Override
