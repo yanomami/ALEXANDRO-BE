@@ -8,4 +8,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RepositoryRestResource(collectionResourceRel = "results")
 public interface PaymentMethodRepository extends JpaRepository<PaymentMethod, Integer> {
+
+    PaymentMethod findFirstByIdGreaterThanEqual(Integer id);
 }

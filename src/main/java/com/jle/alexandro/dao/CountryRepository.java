@@ -14,4 +14,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface CountryRepository extends JpaRepository<Country, Integer> {
     @RestResource // Accessible via http://localhost:8080/alexandro/countries/search/findByDescriptionContains{?key,page,size,sort}
     public Page<Country> findByDescriptionContains(@Param("key") String key, Pageable pageable);
+
+    public Country findFirstByIdGreaterThanEqual(Integer id);
 }

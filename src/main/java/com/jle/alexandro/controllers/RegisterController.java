@@ -1,9 +1,13 @@
 package com.jle.alexandro.controllers;
 
 import com.jle.alexandro.config.JwtTokenUtil;
+import com.jle.alexandro.dao.CountryRepository;
+import com.jle.alexandro.dao.PaymentMethodRepository;
+import com.jle.alexandro.dao.TitleRepository;
 import com.jle.alexandro.models.ApiResponse;
 import com.jle.alexandro.models.AuthToken;
-import com.jle.alexandro.models.entities.Client;
+import com.jle.alexandro.models.LoginUser;
+import com.jle.alexandro.models.entities.*;
 import com.jle.alexandro.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,12 +31,66 @@ public class RegisterController {
     private ClientService userService;
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ApiResponse<AuthToken> register(@RequestBody Client registerUser) throws AuthenticationException {
+    public ApiResponse<AuthToken> register(@RequestBody LoginUser data) throws AuthenticationException {
 
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(registerUser.getEmail(), registerUser.getPassword()));
-        final Client user = userService.create(registerUser);
-        final String token = jwtTokenUtil.generateToken(user);
-        return new ApiResponse<>(200, "success",new AuthToken(token, user.getEmail()));
+        String username = data.getUsername();
+        Client user = userService.findUserByUsername(username);
+
+        if(user != null) throw new RuntimeException("This user already exists, Try with an other username");
+
+        Client newUser = new Client();
+        newUser.setEmail(username);
+        newUser.setPassword(data.getPassword());
+
+//        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(registerUser.getEmail(), registerUser.getPassword()));
+
+        addDummies(newUser);
+
+        final Client addedUser = userService.create(newUser);
+        final String token = jwtTokenUtil.generateToken(addedUser);
+        return new ApiResponse<>(200, "success",new AuthToken(token, addedUser.getEmail()));
+    }
+
+    // FIXME : Add dummies data as some fields doesn't accept null in database
+    @Autowired
+    private TitleRepository titleRepository;
+
+    @Autowired
+    private CountryRepository countryRepository;
+
+    @Autowired
+    private PaymentMethodRepository paymentMethodRepository;
+
+    private Client addDummies(Client user) {
+
+        Title dummyTitle = titleRepository.findFirstByIdGreaterThanEqual(1);
+        Country dummyCountry = countryRepository.findFirstByIdGreaterThanEqual(1);
+        PaymentMethod dummyPaymentMethod = paymentMethodRepository.findFirstByIdGreaterThanEqual(1);
+
+
+        Address invoiceAddress = new Address();
+        invoiceAddress.setAddressLine1("Line1");
+        invoiceAddress.setAddressLine2("Line2");
+        invoiceAddress.setCity("City");
+        invoiceAddress.setState("State");
+        invoiceAddress.setPostalCode("PostalCode");
+        invoiceAddress.setCountryByCountryId(dummyCountry);
+
+        Address deliveryAddress = new Address();
+        deliveryAddress.setAddressLine1("Line1");
+        deliveryAddress.setAddressLine2("Line2");
+        deliveryAddress.setCity("City");
+        deliveryAddress.setState("State");
+        deliveryAddress.setPostalCode("PostalCode");
+        deliveryAddress.setCountryByCountryId(dummyCountry);
+
+        user.setTitleByTitleId(dummyTitle);
+        user.setPhone("+00 000000");
+        user.setAddressByInvoiceAddressId(invoiceAddress);
+        user.setAddressByDeliveryAddressId(deliveryAddress);
+        user.setPaymentMethodByPaymentMethodId( dummyPaymentMethod );
+
+        return user;
     }
 
 }

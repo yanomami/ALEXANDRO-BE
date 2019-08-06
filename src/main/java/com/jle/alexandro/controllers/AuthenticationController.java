@@ -28,7 +28,7 @@ public class AuthenticationController {
     public ApiResponse<AuthToken> register(@RequestBody LoginUser loginUser) throws AuthenticationException {
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword()));
-        final Client user = userService.findOne(loginUser.getUsername());
+        final Client user = userService.findUserByUsername(loginUser.getUsername());
         final String token = jwtTokenUtil.generateToken(user);
         return new ApiResponse<>(200, "success",new AuthToken(token, user.getEmail()));
     }

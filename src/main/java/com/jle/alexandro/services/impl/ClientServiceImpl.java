@@ -74,7 +74,7 @@ public class ClientServiceImpl implements ClientService, UserDetailsService {
     }
 
     @Override
-    public Client findOne(String username) {
+    public Client findUserByUsername(String username) {
         return repository.findClientByEmail(username);
     }
 }

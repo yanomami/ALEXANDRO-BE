@@ -8,4 +8,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RepositoryRestResource(collectionResourceRel = "results")
 public interface TitleRepository extends JpaRepository<Title, Integer> {
+
+    Title findFirstByIdGreaterThanEqual(Integer id);
 }
