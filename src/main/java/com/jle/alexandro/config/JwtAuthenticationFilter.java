@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static com.jle.alexandro.models.Constants.HEADER_STRING;
-import static com.jle.alexandro.models.Constants.TOKEN_PREFIX;
+import static com.jle.alexandro.config.SecurityConstants.HEADER_STRING;
+import static com.jle.alexandro.config.SecurityConstants.TOKEN_PREFIX;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 

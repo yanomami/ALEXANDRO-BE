@@ -13,8 +13,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.function.Function;
 
-import static com.jle.alexandro.models.Constants.ACCESS_TOKEN_VALIDITY_SECONDS;
-import static com.jle.alexandro.models.Constants.SIGNING_KEY;
+import static com.jle.alexandro.config.SecurityConstants.ACCESS_TOKEN_VALIDITY_SECONDS;
+import static com.jle.alexandro.config.SecurityConstants.SIGNING_KEY;
 
 @Component
 public class JwtTokenUtil implements Serializable {
