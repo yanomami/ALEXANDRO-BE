@@ -18,7 +18,7 @@ import java.util.List;
 
 @Service(value = "userService")
 @Transactional
-public class AccountServiceImpl implements AccountService, UserDetailsService {
+public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private ClientRepository userRepository;
