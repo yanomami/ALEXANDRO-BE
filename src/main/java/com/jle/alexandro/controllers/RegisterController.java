@@ -6,7 +6,7 @@ import com.jle.alexandro.dao.PaymentMethodRepository;
 import com.jle.alexandro.dao.TitleRepository;
 import com.jle.alexandro.models.ApiResponse;
 import com.jle.alexandro.models.AuthToken;
-import com.jle.alexandro.models.LoginUser;
+import com.jle.alexandro.models.RegisterUser;
 import com.jle.alexandro.models.entities.*;
 import com.jle.alexandro.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class RegisterController {
     private ClientService userService;
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ApiResponse<AuthToken> register(@RequestBody LoginUser data) throws AuthenticationException {
+    public ApiResponse<AuthToken> register(@RequestBody RegisterUser data) throws AuthenticationException {
 
         String username = data.getUsername();
         Client user = userService.findUserByUsername(username);
@@ -39,6 +39,8 @@ public class RegisterController {
         if(user != null) throw new RuntimeException("This user already exists, Try with an other username");
 
         Client newUser = new Client();
+        newUser.setFirstName(data.getFirstName());
+        newUser.setLastName(data.getLastName());
         newUser.setEmail(username);
         newUser.setPassword(data.getPassword());
 
