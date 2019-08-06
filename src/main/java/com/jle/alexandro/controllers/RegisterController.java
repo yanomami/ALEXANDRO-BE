@@ -6,13 +6,10 @@ import com.jle.alexandro.dao.PaymentMethodRepository;
 import com.jle.alexandro.dao.TitleRepository;
 import com.jle.alexandro.models.ApiResponse;
 import com.jle.alexandro.models.AuthToken;
-import com.jle.alexandro.models.RegisterUser;
+import com.jle.alexandro.models.RegistrationForm;
 import com.jle.alexandro.models.entities.*;
-import com.jle.alexandro.services.ClientService;
+import com.jle.alexandro.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,19 +19,16 @@ import org.springframework.web.bind.annotation.*;
 public class RegisterController {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private ClientService userService;
+    private AccountService accountService;
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ApiResponse<AuthToken> register(@RequestBody RegisterUser data) throws AuthenticationException {
+    @RequestMapping(method = RequestMethod.POST)
+    public ApiResponse<AuthToken> register(@RequestBody RegistrationForm data) throws AuthenticationException {
 
         String username = data.getUsername();
-        Client user = userService.findUserByUsername(username);
+        Client user = accountService.findUserByUsername(username);
 
         if(user != null) throw new RuntimeException("This user already exists, Try with an other username");
 
@@ -44,11 +38,9 @@ public class RegisterController {
         newUser.setEmail(username);
         newUser.setPassword(data.getPassword());
 
-//        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(registerUser.getEmail(), registerUser.getPassword()));
-
         addDummies(newUser);
 
-        final Client addedUser = userService.create(newUser);
+        final Client addedUser = accountService.saveUser(newUser);
         final String token = jwtTokenUtil.generateToken(addedUser);
         return new ApiResponse<>(200, "success",new AuthToken(token, addedUser.getEmail()));
     }

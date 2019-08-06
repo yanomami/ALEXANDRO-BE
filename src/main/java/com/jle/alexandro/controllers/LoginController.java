@@ -3,7 +3,7 @@ package com.jle.alexandro.controllers;
 import com.jle.alexandro.config.JwtTokenUtil;
 import com.jle.alexandro.models.*;
 import com.jle.alexandro.models.entities.Client;
-import com.jle.alexandro.services.ClientService;
+import com.jle.alexandro.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,13 +22,13 @@ public class LoginController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private ClientService userService;
+    private AccountService accountService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ApiResponse<AuthToken> register(@RequestBody LoginUser loginUser) throws AuthenticationException {
+    public ApiResponse<AuthToken> login(@RequestBody LoginForm loginForm) throws AuthenticationException {
 
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword()));
-        final Client user = userService.findUserByUsername(loginUser.getUsername());
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginForm.getUsername(), loginForm.getPassword()));
+        final Client user = accountService.findUserByUsername(loginForm.getUsername());
         final String token = jwtTokenUtil.generateToken(user);
         return new ApiResponse<>(200, "success",new AuthToken(token, user.getEmail()));
     }

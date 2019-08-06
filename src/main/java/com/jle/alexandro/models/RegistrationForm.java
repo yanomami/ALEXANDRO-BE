@@ -5,8 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @AllArgsConstructor @NoArgsConstructor
-public class LoginUser {
+public class RegistrationForm {
 
+    private String firstName;
+    private String lastName;
     private String username;
     private String password;
 }
