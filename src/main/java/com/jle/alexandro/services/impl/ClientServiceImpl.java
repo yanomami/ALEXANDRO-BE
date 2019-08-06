@@ -49,6 +49,7 @@ public class ClientServiceImpl implements ClientService, UserDetailsService {
 
     @Override
     public Client create(Client resource) {
+        resource.setPassword(bcryptEncoder.encode(resource.getPassword()));
         return repository.save(resource);
     }
 
