@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/token")
+@RequestMapping("/login")
 public class AuthenticationController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class AuthenticationController {
     @Autowired
     private ClientService userService;
 
-    @RequestMapping(value = "/generate-token", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ApiResponse<AuthToken> register(@RequestBody LoginUser loginUser) throws AuthenticationException {
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword()));

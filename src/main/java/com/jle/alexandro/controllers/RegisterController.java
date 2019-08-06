@@ -30,7 +30,7 @@ public class RegisterController {
     @Autowired
     private ClientService userService;
 
-    @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<AuthToken> register(@RequestBody RegisterUser data) throws AuthenticationException {
 
         String username = data.getUsername();
