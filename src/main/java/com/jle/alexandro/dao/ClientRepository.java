@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RepositoryRestResource(collectionResourceRel = "results")
 public interface ClientRepository extends JpaRepository<Client, Integer> {
-    @RestResource
-    Client findClientByEmail(@Param("email") String email);
+    @RestResource(path="findByUsername", rel="findByUsername")
+    Client findClientByEmail(@Param("username") String email);
 }
