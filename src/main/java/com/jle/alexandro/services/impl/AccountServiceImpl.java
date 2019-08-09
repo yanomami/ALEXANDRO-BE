@@ -50,8 +50,7 @@ public class AccountServiceImpl implements AccountService {
         return saveUser(newUser);
     }
 
-    @Override
-    public Client saveUser(Client user) {
+    private Client saveUser(Client user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
