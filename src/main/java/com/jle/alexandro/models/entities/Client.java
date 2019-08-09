@@ -113,7 +113,7 @@ public class Client {
         this.titleByTitleId = titleByTitleId;
     }
 
-    @OneToOne(cascade = CascadeType.ALL) // TODO : TBC
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "invoice_address_id", referencedColumnName = "id", nullable = false)
     public Address getAddressByInvoiceAddressId() {
         return addressByInvoiceAddressId;
@@ -123,7 +123,7 @@ public class Client {
         this.addressByInvoiceAddressId = addressByInvoiceAddressId;
     }
 
-    @OneToOne(cascade = CascadeType.ALL) // TODO : TBC
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_address_id", referencedColumnName = "id", nullable = false)
     public Address getAddressByDeliveryAddressId() {
         return addressByDeliveryAddressId;
