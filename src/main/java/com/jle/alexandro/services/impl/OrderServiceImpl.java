@@ -41,15 +41,18 @@ public class OrderServiceImpl implements OrderService {
         OrderHeader orderHeaderSaved = orderHeaderRepository.save(orderHeader);
 
         // Save orderLines to data base
+        orderHeaderSaved.setOrderLinesById(new HashSet<OrderLine>());
+
         ProductItemForm[] productItemsArray = orderForm.getProductItems();
-//        for(ProductItemForm productItem : productItemsArray) {
-//            OrderLine orderLine = new OrderLine();
-//            orderLine.setOrderHeaderId(orderHeader.getId());
-//            orderLine.setProductId(productItem.getId());
-//            orderLine.setQuantity(productItem.getQuantity());
+
+        for(ProductItemForm productItem : productItemsArray) {
+            OrderLine orderLine = new OrderLine();
+            orderLine.setOrderHeaderId(orderHeader.getId());
+            orderLine.setProductId(productItem.getId());
+            orderLine.setQuantity(productItem.getQuantity());
 //
-//            orderHeaderSaved.getOrderLinesById().add(orderLine);
-//        }
+            orderHeaderSaved.getOrderLinesById().add(orderLine);
+        }
 
         return orderHeaderSaved;
     }
