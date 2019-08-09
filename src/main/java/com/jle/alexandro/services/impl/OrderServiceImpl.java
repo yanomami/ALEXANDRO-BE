@@ -1,5 +1,6 @@
 package com.jle.alexandro.services.impl;
 
+import com.jle.alexandro.dao.ClientRepository;
 import com.jle.alexandro.dao.OrderHeaderRepository;
 import com.jle.alexandro.dao.OrderLineRepository;
 import com.jle.alexandro.models.OrderForm;
@@ -23,30 +24,29 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderLineRepository orderLineRepository;
 
+    @Autowired
+    private ClientRepository clientRepository;
+
     @Override
     public OrderHeader saveOrder(OrderForm orderForm) {
 
-        Client client = formatClient(orderForm);
-        OrderLine[] orderlinesArray = formatOrderLines(orderForm);
-        OrderHeader orderHeader = formatOrderHeader(orderForm, client);
+        OrderHeader orderHeader = formatOrderHeader(orderForm);
 
-        orderHeader.setClientByClientId(orderForm.getClient());
-
+        // Save to data base
         OrderHeader orderHeaderSaved = orderHeaderRepository.save(orderHeader);
+        OrderLine[] orderlinesArray = orderForm.getOrderlines();
         for(OrderLine orderLine : orderlinesArray) {
             orderHeaderSaved.getOrderLinesById().add(orderLine);
         }
         return orderHeaderSaved;
     }
 
-    private Client formatClient(OrderForm orderForm) {
-        Client client = new Client();
-        client = orderForm.getClient();
-        return client;
-    }
-
-    private OrderHeader formatOrderHeader(OrderForm orderForm, Client client) {
+    private OrderHeader formatOrderHeader(OrderForm orderForm) {
         OrderHeader orderHeader = new OrderHeader();
+
+        Optional<Client> optional = clientRepository.findById(orderForm.getIdClient());
+        Client client = optional.orElse(null);
+        orderHeader.setClientByClientId(client);
 
         orderHeader.setComment("comment");
         orderHeader.setDateDelivered(new java.sql.Date(System.currentTimeMillis()));
@@ -59,15 +59,7 @@ public class OrderServiceImpl implements OrderService {
         shippingMethod.setCharges(new BigDecimal(18.4065));
         orderHeader.setShippingMethodByShippingMethodId(shippingMethod);
 
-        orderHeader.setClientByClientId(client);
-
         return orderHeader;
-    }
-
-    private OrderLine[] formatOrderLines(OrderForm orderForm) {
-        OrderLine[] orderlinesArray = orderForm.getOrderlines();
-        Set orderlinesSet = new HashSet<OrderLine>(Arrays.asList(orderlinesArray));
-        return orderlinesArray;
     }
 
 }
