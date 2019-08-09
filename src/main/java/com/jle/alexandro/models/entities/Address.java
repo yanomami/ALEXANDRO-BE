@@ -1,6 +1,7 @@
 package com.jle.alexandro.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -14,9 +15,9 @@ public class Address {
     private String state;
     private String postalCode;
     private Country countryByCountryId;
-    @JsonBackReference
+    @JsonIgnore
     private Client clientByIdInvoice;
-    @JsonBackReference
+    @JsonIgnore
     private Client clientByIdDelivery;
 
     @Id

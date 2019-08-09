@@ -21,7 +21,7 @@ public class Client {
     private Address addressByInvoiceAddressId;
     private Address addressByDeliveryAddressId;
     private PaymentMethod paymentMethodByPaymentMethodId;
-    @JsonBackReference
+    @JsonIgnore
     private Set<OrderHeader> orderHeadersById;
 
     @Id

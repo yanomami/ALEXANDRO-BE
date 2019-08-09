@@ -1,6 +1,7 @@
 package com.jle.alexandro.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -10,7 +11,7 @@ import java.util.Set;
 public class Country {
     private Integer id;
     private String description;
-    @JsonBackReference
+    @JsonIgnore
     private Set<Address> addressesById;
 
     @Id
