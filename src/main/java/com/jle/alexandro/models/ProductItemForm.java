@@ -1,9 +1,8 @@
 package com.jle.alexandro.models;
 
 import lombok.Data;
-import lombok.ToString;
 
-@Data @ToString
+@Data
 public class ProductItemForm {
     Integer id;
     Integer quantity;
