@@ -14,7 +14,9 @@ public class Address {
     private String state;
     private String postalCode;
     private Country countryByCountryId;
+    @JsonBackReference
     private Client clientByIdInvoice;
+    @JsonBackReference
     private Client clientByIdDelivery;
 
     @Id
@@ -106,7 +108,6 @@ public class Address {
         this.countryByCountryId = countryByCountryId;
     }
 
-    @JsonBackReference // TBC
     @OneToOne(mappedBy = "addressByInvoiceAddressId")
     public Client getClientByIdInvoice() {
         return clientByIdInvoice;
@@ -116,7 +117,6 @@ public class Address {
         this.clientByIdInvoice = clientByIdInvoice;
     }
 
-    @JsonBackReference // TBC
     @OneToOne(mappedBy = "addressByDeliveryAddressId")
     public Client getClientByIdDelivery() {
         return clientByIdDelivery;

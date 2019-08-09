@@ -21,6 +21,7 @@ public class Client {
     private Address addressByInvoiceAddressId;
     private Address addressByDeliveryAddressId;
     private PaymentMethod paymentMethodByPaymentMethodId;
+    @JsonBackReference
     private Set<OrderHeader> orderHeadersById;
 
     @Id
@@ -142,7 +143,6 @@ public class Client {
         this.paymentMethodByPaymentMethodId = paymentMethodByPaymentMethodId;
     }
 
-    @JsonBackReference // TBC
     @OneToMany(mappedBy = "clientByClientId")
     public Set<OrderHeader> getOrderHeadersById() {
         return orderHeadersById;

@@ -10,6 +10,7 @@ import java.util.Set;
 public class Title {
     private Integer id;
     private String description;
+    @JsonBackReference
     private Set<Client> clientsById;
 
     @Id
@@ -47,7 +48,6 @@ public class Title {
         return Objects.hash(id, description);
     }
 
-    @JsonBackReference // TBC
     @OneToMany(mappedBy = "titleByTitleId")
     public Set<Client> getClientsById() {
         return clientsById;

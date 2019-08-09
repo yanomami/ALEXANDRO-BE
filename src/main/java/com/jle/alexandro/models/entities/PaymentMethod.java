@@ -11,6 +11,7 @@ import java.util.Set;
 public class PaymentMethod {
     private Integer id;
     private String description;
+    @JsonBackReference
     private Set<Client> clientsById;
 
     @Id
@@ -48,7 +49,6 @@ public class PaymentMethod {
         return Objects.hash(id, description);
     }
 
-    @JsonBackReference // TBC
     @OneToMany(mappedBy = "paymentMethodByPaymentMethodId")
     public Set<Client> getClientsById() {
         return clientsById;
