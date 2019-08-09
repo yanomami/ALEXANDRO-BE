@@ -45,7 +45,7 @@ public class RegisterController {
         return new ApiResponse<>(200, "success",new AuthToken(token, addedUser.getEmail()));
     }
 
-    // FIXME : Add dummies data as some fields doesn't accept null in database
+    // FIXME : Add dummies data as some fields are not sent by frontend and doesn't accept null in database
     @Autowired
     private TitleRepository titleRepository;
 

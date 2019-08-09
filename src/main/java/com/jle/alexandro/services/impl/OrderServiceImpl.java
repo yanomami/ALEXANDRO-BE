@@ -75,6 +75,7 @@ public class OrderServiceImpl implements OrderService {
         orderHeader.setDatePlaced(new java.sql.Date(System.currentTimeMillis()));
         orderHeader.setDateShipped(new java.sql.Date(System.currentTimeMillis()));
 
+        // FIXME : Add dummies data as some fields are not sent by frontend and doesn't accept null in database
         ShippingMethod shippingMethod = shippingMethodRepository.findFirstByIdGreaterThanEqual(1);
         orderHeader.setShippingMethodByShippingMethodId(shippingMethod);
 
