@@ -3,6 +3,7 @@ package com.jle.alexandro.services.impl;
 import com.jle.alexandro.dao.ClientRepository;
 import com.jle.alexandro.dao.OrderHeaderRepository;
 import com.jle.alexandro.dao.OrderLineRepository;
+import com.jle.alexandro.dao.ShippingMethodRepository;
 import com.jle.alexandro.models.OrderForm;
 import com.jle.alexandro.models.ProductItemForm;
 import com.jle.alexandro.models.entities.Client;
@@ -31,6 +32,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private ShippingMethodRepository shippingMethodRepository;
 
     @Override
     public OrderHeader saveOrder(OrderForm orderForm) {
@@ -71,10 +75,7 @@ public class OrderServiceImpl implements OrderService {
         orderHeader.setDatePlaced(new java.sql.Date(System.currentTimeMillis()));
         orderHeader.setDateShipped(new java.sql.Date(System.currentTimeMillis()));
 
-        ShippingMethod shippingMethod = new ShippingMethod();
-        shippingMethod.setId(1);
-        shippingMethod.setDescription("DHL");
-        shippingMethod.setCharges(new BigDecimal(18.4065));
+        ShippingMethod shippingMethod = shippingMethodRepository.findFirstByIdGreaterThanEqual(1);
         orderHeader.setShippingMethodByShippingMethodId(shippingMethod);
 
         return orderHeader;
