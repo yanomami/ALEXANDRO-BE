@@ -4,6 +4,7 @@ import com.jle.alexandro.dao.ClientRepository;
 import com.jle.alexandro.dao.OrderHeaderRepository;
 import com.jle.alexandro.dao.OrderLineRepository;
 import com.jle.alexandro.models.OrderForm;
+import com.jle.alexandro.models.ProductItemForm;
 import com.jle.alexandro.models.entities.Client;
 import com.jle.alexandro.models.entities.OrderHeader;
 import com.jle.alexandro.models.entities.OrderLine;
@@ -36,12 +37,20 @@ public class OrderServiceImpl implements OrderService {
 
         OrderHeader orderHeader = formatOrderHeader(orderForm);
 
-        // Save to data base
+        // Save orderHeader to data base
         OrderHeader orderHeaderSaved = orderHeaderRepository.save(orderHeader);
-        OrderLine[] orderlinesArray = orderForm.getOrderlines();
-        for(OrderLine orderLine : orderlinesArray) {
+
+        // Save orderLines to data base
+        ProductItemForm[] productItemsArray = orderForm.getProductItems();
+        for(ProductItemForm productItem : productItemsArray) {
+            OrderLine orderLine = new OrderLine();
+            orderLine.setOrderHeaderId(orderHeader.getId());
+            orderLine.setProductId(productItem.getId());
+            orderLine.setQuantity(productItem.getQuantity());
+
             orderHeaderSaved.getOrderLinesById().add(orderLine);
         }
+
         return orderHeaderSaved;
     }
 
@@ -55,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
         orderHeader.setComment("comment");
         orderHeader.setDateDelivered(new java.sql.Date(System.currentTimeMillis()));
         orderHeader.setDatePlaced(new java.sql.Date(System.currentTimeMillis()));
-        orderHeader.setDateDelivered(new java.sql.Date(System.currentTimeMillis()));
+        orderHeader.setDateShipped(new java.sql.Date(System.currentTimeMillis()));
 
         ShippingMethod shippingMethod = new ShippingMethod();
         shippingMethod.setId(1);
