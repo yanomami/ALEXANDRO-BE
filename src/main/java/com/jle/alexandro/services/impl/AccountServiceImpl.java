@@ -2,7 +2,6 @@ package com.jle.alexandro.services.impl;
 
 import javax.transaction.Transactional;
 
-import com.jle.alexandro.config.JwtTokenUtil;
 import com.jle.alexandro.dao.ClientRepository;
 import com.jle.alexandro.dao.CountryRepository;
 import com.jle.alexandro.dao.PaymentMethodRepository;
