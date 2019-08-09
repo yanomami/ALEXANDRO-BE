@@ -52,6 +52,8 @@ public class OrderServiceImpl implements OrderService {
             orderLine.setQuantity(productItem.getQuantity());
 
             orderHeaderSaved.getOrderLinesById().add(orderLine);
+
+            orderLineRepository.save(orderLine);
         }
 
         return orderHeaderSaved;
