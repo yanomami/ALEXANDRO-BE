@@ -42,14 +42,14 @@ public class OrderServiceImpl implements OrderService {
 
         // Save orderLines to data base
         ProductItemForm[] productItemsArray = orderForm.getProductItems();
-        for(ProductItemForm productItem : productItemsArray) {
-            OrderLine orderLine = new OrderLine();
-            orderLine.setOrderHeaderId(orderHeader.getId());
-            orderLine.setProductId(productItem.getId());
-            orderLine.setQuantity(productItem.getQuantity());
-
-            orderHeaderSaved.getOrderLinesById().add(orderLine);
-        }
+//        for(ProductItemForm productItem : productItemsArray) {
+//            OrderLine orderLine = new OrderLine();
+//            orderLine.setOrderHeaderId(orderHeader.getId());
+//            orderLine.setProductId(productItem.getId());
+//            orderLine.setQuantity(productItem.getQuantity());
+//
+//            orderHeaderSaved.getOrderLinesById().add(orderLine);
+//        }
 
         return orderHeaderSaved;
     }
