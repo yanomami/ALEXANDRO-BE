@@ -9,6 +9,8 @@ import com.jle.alexandro.models.entities.OrderHeader;
 import com.jle.alexandro.models.entities.OrderLine;
 import com.jle.alexandro.models.entities.ShippingMethod;
 import com.jle.alexandro.services.OrderService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ import java.util.*;
 
 @Service
 public class OrderServiceImpl implements OrderService {
+
+    Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Autowired
     private OrderHeaderRepository orderHeaderRepository;
