@@ -105,7 +105,7 @@ public class OrderHeader {
         this.shippingMethodByShippingMethodId = shippingMethodByShippingMethodId;
     }
 
-    @OneToMany(mappedBy = "orderHeaderByOrderHeaderId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "orderHeaderByOrderHeaderId"/*, cascade = CascadeType.ALL*/)
     public Set<OrderLine> getOrderLinesById() {
         return orderLinesById;
     }
