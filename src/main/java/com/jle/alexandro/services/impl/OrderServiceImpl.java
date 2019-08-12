@@ -68,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderHeader formatOrderHeader(OrderForm orderForm) {
         OrderHeader orderHeader = new OrderHeader();
 
-        Optional<Client> optional = clientRepository.findById(orderForm.getIdClient());
+        Optional<Client> optional = clientRepository.findById(orderForm.getClient().getId());
         Client client = optional.orElse(null);
         orderHeader.setClientByClientId(client);
 
