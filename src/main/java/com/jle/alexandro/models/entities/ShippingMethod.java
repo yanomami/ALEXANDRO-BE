@@ -1,5 +1,7 @@
 package com.jle.alexandro.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -11,6 +13,7 @@ public class ShippingMethod {
     private Integer id;
     private String description;
     private BigDecimal charges;
+    @JsonIgnore
     private Set<OrderHeader> orderHeadersById;
 
     @Id
