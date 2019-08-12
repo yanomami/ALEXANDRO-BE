@@ -33,7 +33,7 @@ public class AlexandroApplication implements CommandLineRunner {
         //repositoryRestConfiguration.exposeIdsFor(ClientEntity.class);
         //-> Cf. file RestConfiguration
 
-        // Encode passwords if set before encryption (import data from sql)
+        // SET ALL CLIENTS PASSWORD = "Peenahe1" (with encryption)
  /*
         service.findAll().forEach(client -> {
             client.setPassword(passwordEncoder.encode("Peenahe1"));
