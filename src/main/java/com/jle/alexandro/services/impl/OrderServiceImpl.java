@@ -75,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
         }
         client.setFirstName(orderForm.getClient().getFirstName());
         client.setLastName(orderForm.getClient().getLastName());
-        // TODO : set the others fields
+        // TODO : set the others fields( except email for an existing client as it is the immutable username i.e the natural id)
         clientRepository.save(client);
 
         orderHeader.setClientByClientId(client);
