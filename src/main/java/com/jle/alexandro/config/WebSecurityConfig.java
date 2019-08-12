@@ -48,8 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().
                 authorizeRequests()
-                .antMatchers("/login/**", "/register/**").permitAll()
-                .antMatchers("/**").permitAll() // TODO : remove after development
+                .antMatchers("/login", "/register").permitAll()
+                .antMatchers("/products/**", "/books/**").permitAll() // Permit filling the caddy without being logged
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
