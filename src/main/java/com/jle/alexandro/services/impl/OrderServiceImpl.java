@@ -70,6 +70,14 @@ public class OrderServiceImpl implements OrderService {
 
         Optional<Client> optional = clientRepository.findById(orderForm.getClient().getId());
         Client client = optional.orElse(null);
+        if(client == null) {
+            client = new Client();
+        }
+        client.setFirstName(orderForm.getClient().getFirstName());
+        client.setLastName(orderForm.getClient().getLastName());
+        // TODO : set the others fields
+        clientRepository.save(client);
+
         orderHeader.setClientByClientId(client);
 
         orderHeader.setComment("comment");
