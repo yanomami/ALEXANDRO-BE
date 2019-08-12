@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Objects;
 import java.util.Set;
 
@@ -56,6 +57,7 @@ public class Client {
     }
 
     @NaturalId
+    @Email(message = "Email should be valid")
     @Column(name = "email", nullable = false, length = 255)
     public String getEmail() {
         return email;
