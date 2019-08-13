@@ -145,7 +145,7 @@ public class Client {
         this.paymentMethodByPaymentMethodId = paymentMethodByPaymentMethodId;
     }
 
-    @OneToMany(mappedBy = "clientByClientId")
+    @OneToMany(mappedBy = "clientByClientId", cascade = CascadeType.REMOVE)
     public Set<OrderHeader> getOrderHeadersById() {
         return orderHeadersById;
     }
