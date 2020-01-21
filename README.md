@@ -1,4 +1,4 @@
-# ALEXANDRO_BE
+# Site e-commerce de vente de livres
 BACK-END
 
 ## Principaux tutoriaux suivis:
